@@ -13,7 +13,7 @@ The web server address is following:
 * IP address: [18.216.73.137](http://18.216.73.137/)
 * Accessible ssh port: 2200
 
-And you can login the server with `ssh grader@18.216.73.137 -p 2200` and the password is `Udcourse#0812`.
+And you can login the server with `ssh grader@18.216.73.137 -p 2200` and the password is `Udcourse#0812`. Or you also can login with `ssh -i /home/user/.ssh/udacity_key.rsa grader@18.216.73.137 -p 2200`, and the rsa key is [here](https://github.com/eryue0220/linux-configuration-note/blob/master/udacity_key.rsa).
 
 ## Configuration
 
