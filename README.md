@@ -10,10 +10,10 @@ This is the Udacity FSND final project about Linux server configuration on [AWS 
 
 The web server address is following:
 
-* IP address: [34.205.69.230](http://34.205.69.230/)
+* IP address: [18.216.73.137](http://18.216.73.137/)
 * Accessible ssh port: 2200
 
-And you can login the server with `ssh -i ~/.ssh/udfnsd_key.rsa -p 2200 grader@34.205.69.230`
+And you can login the server with `ssh grader@18.216.73.137 -p 2200` and the password is `Udcourse#0812`.
 
 ## Configuration
 
@@ -104,7 +104,6 @@ sudo apt-get install apache2
 #### mod_wsgi
 
 * Run `sudo apt-get install libapache2-mod-wsgi`
-* Enable mod_wsgi with `sudo a2enmod wsgi`
 * Start the web server through `sudo service apache2 start`
 
 #### Git
@@ -124,7 +123,7 @@ logging.basicConfig(stream=sys.stderr)
 sys.path.insert(0, "/var/www/catalog/")
 
 from catalog import app as application
-application.secret_key = 'supersecretkey'
+application.secret_key = 'super_secret_key'
 ```
 
 #### Install Flask and other dependencies
@@ -132,7 +131,7 @@ application.secret_key = 'supersecretkey'
 Before install the flask framework, we need install the `python-pip` first. We can do it with `sudo apt-get install python-pip`. When finished, we can install Flask and other dependencies through:
 
 ```bash
-pip install flask sqlalchemy requests httplib2 oauth2client sqlalchemy_utils pyscopg2
+pip install flask sqlalchemy requests httplib2 oauth2client sqlalchemy_utils psycopg2
 ```
 
 ### Configuration the apache2
@@ -141,8 +140,8 @@ We create a new conf name `catalog.conf` for our website in `/etc/apache2/sites-
 
 ```apache
 <VirtualHost *:80>
-    ServerName 34.205.69.230
-    ServerAdmin admin@34.205.69.230
+    ServerName 18.216.73.137
+    ServerAdmin admin@18.216.73.137
     WSGIDaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
     WSGIProcessGroup catalog
     WSGIScriptAlias / /var/www/catalog/catalog.wsgi
@@ -191,7 +190,7 @@ Then we start configuring the psql to use in our web production. And just type t
 Now we need do some change for the project:
 
 * Modified the `client_secrets.json` to `/var/www/catalog/catalog/client_secrets.json` in your `application.py` in `/var/www/catalog/catalog/`
-* change the code about create engine line in the `db_session` and `db/db_set.py` to `engine = create_engine(postgresql://catalog:password@localhost/catalog)`
+    * change the code about create engine line in the `db_session` and `db/db_set.py` to `engine = create_engine('postgresql://catalog:password@localhost/catalog')`
 * change the `application.py` to `__init__.py`
 
 ### Final
@@ -201,4 +200,4 @@ Now, all is done. But before we visit the result, we may restart or our apache2 
 If no accident, now we can visit the website online 👏👏.
 
 > Tips
-> If you open the browser, but see the error page such as `The Internal Error` and so on, you can checkout the log through `sudo less /var/log/apache2/error.log` to help you debug.# linux-configuration-note
+> If you open the browser, but see the error page such as `The Internal Error` and so on, you can checkout the log through `sudo less /var/log/apache2/error.log` to help you debug.
