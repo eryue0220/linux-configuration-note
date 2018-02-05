@@ -10,10 +10,10 @@ This is the Udacity FSND final project about Linux server configuration on [AWS 
 
 The web server address is following:
 
-* IP address: [18.216.73.137](http://18.216.73.137/)
+* IP address: [18.219.65.189](http://18.219.65.189/)
 * Accessible ssh port: 2200
 
-And you can login the server with `ssh grader@18.216.73.137 -p 2200` and the password is `Udcourse#0812`. Or you also can login with `ssh -i /home/user/.ssh/udacity_key.rsa grader@18.216.73.137 -p 2200`, and the rsa key is [here](https://github.com/eryue0220/linux-configuration-note/blob/master/udacity_key.rsa).
+And you can login the server with `ssh grader@18.219.65.189 -p 2200` and the password is `Udcourse#0812`. Or you also can login with `ssh -i /home/user/.ssh/udacity_key.rsa grader@18.219.65.189 -p 2200`, and the rsa key is [here](https://github.com/eryue0220/linux-configuration-note/blob/master/udacity_key).
 
 ## Configuration
 
@@ -140,8 +140,8 @@ We create a new conf name `catalog.conf` for our website in `/etc/apache2/sites-
 
 ```apache
 <VirtualHost *:80>
-    ServerName 18.216.73.137
-    ServerAdmin admin@18.216.73.137
+    ServerName 18.219.65.189
+    ServerAdmin admin@18.219.65.189
     WSGIDaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
     WSGIProcessGroup catalog
     WSGIScriptAlias / /var/www/catalog/catalog.wsgi
